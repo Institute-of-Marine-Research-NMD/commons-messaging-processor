@@ -1,6 +1,5 @@
 package no.imr.messaging.processor;
 
-import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 import javax.xml.bind.JAXBContext;
@@ -9,11 +8,10 @@ import no.imr.messaging.errorresponse.domain.v1.ErrorResponseType;
 import no.imr.messaging.errorresponse.domain.v1.generation.ErrorResponseGenerator;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.springframework.stereotype.Service;
 
 /**
  *
- * @author sjurl
+ * @author a5119
  */
 
 public class ExceptionProcessor implements Processor {
@@ -42,7 +40,7 @@ public class ExceptionProcessor implements Processor {
         Marshaller marshaller = JAXBContext.newInstance("no.imr.messaging.errorresponse.domain.v1").createMarshaller();
         StringWriter sw = new StringWriter();
          marshaller.marshal(response, sw);
-               //Use getIn to preserve incoming headers
+         //Use getIn to preserve incoming headers
         exchange.getIn().setBody(sw.toString());
     }
 
